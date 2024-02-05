@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Weather Forecast</title>
+    <script th:src="@{/script.js}"></script>
+</head>
+<body>
+<h1>Welcome To The Weather Forecast</h1>
+<div>
+
+    <h2>Current Weather</h2>
+    <p>Time: <span th:text="${weather.current.time}"></span></p>
+    <p>Temperature: <span th:text="${weather.current.temperature_2m + '°C'}"></span></p>
+    <p>Wind Speed: <span th:text="${weather.current.wind_speed_10m + ' km/h'}"></span></p>
+</div>
+<div>
+    <h2>Hourly Forecast</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Time</th>
+            <th>Temperature</th>
+            <th>Relative Humidity</th>
+            <th>Wind Speed</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="hour : ${weather.hourly}">
+            <td th:text="${hour.time}"></td>
+            <td th:text="${hour.temperature_2m + '°C'}"></td>
+            <td th:text="${hour.relative_humidity_2m + '%'}"></td>
+            <td th:text="${hour.wind_speed_10m + ' km/h'}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
